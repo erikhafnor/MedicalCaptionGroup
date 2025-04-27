@@ -1,5 +1,11 @@
 
 
+# Ignore checkpoints
+checkpoints/
+
+
+
+
 # Model weights and outputs
 blip-finetuned/
 *.safetensors
