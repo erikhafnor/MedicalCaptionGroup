@@ -3,6 +3,12 @@
 # Ignore checkpoints
 checkpoints/
 
+# Ignore model weights
+*.h5
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
 
 
 
