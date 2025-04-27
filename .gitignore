@@ -1,21 +1,3 @@
-# Ignore data folder
-data/
-
-# Ignore output folder
-output/
-
-# Ignore checkpoints
-checkpoints/
-
-# Ignore model weights
-*.h5
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# Python cache
-__pycache__/
-*.pyc
 
 
 # Model weights and outputs
@@ -23,14 +5,9 @@ blip-finetuned/
 *.safetensors
 *.pkl
 
-# Output and result files
-*.json
-*.txt
-*.png
 
-# Temporary files
-*.zip
-*.tmp
+
+
 
 # Additional from project
 wandb/
