@@ -36,21 +36,6 @@ pip install torch torchvision transformers datasets tqdm bert_score evaluate rou
 
 The datasets used (ROCOv2) must be downloaded manually if not already available.
 
-If you are running evaluation, make sure the folder structure is like this:
-
-```
-MedicalCaptionGroup/
-├── data/
-│   └── (dataset files here)
-├── blip-finetuned/
-│   └── (BLIP fine-tuned model checkpoints)
-├── final_results.json
-├── evaluation_results.txt
-├── preprocessing.ipynb
-├── blip_captioning.ipynb
-├── cnn_transformer_captioning.ipynb
-└── ...
-```
 
 > ⚡ **Note**: Large files like models and outputs are **ignored** in GitHub using `.gitignore` rules. You need to download or generate them locally if needed.
 
