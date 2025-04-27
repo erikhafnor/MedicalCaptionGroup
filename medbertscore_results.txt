@@ -1,0 +1,6 @@
+
+📊 MedBERTScore Evaluation Results:
+
+Average Precision: 0.7236
+Average Recall: 0.6813
+Average F1 Score: 0.7012

@@ -1,0 +1,40 @@
+Image 0
+Generated Caption: ct scan showing the presence of the right hematoma in the right hematoma
+True Caption: CT chest axial view showing a huge ascending aortic aneurysm (*).
+--------------------------------------------------
+Image 1
+Generated Caption: a large, thickening mass in the right lower lobe of the left lobe is seen in the image
+True Caption: Computed tomography (CT) shows floating thrombosis (white arrow)
+--------------------------------------------------
+Image 2
+Generated Caption: the image shows the presence of the first coronal artery in the right atrium of the right atrium,
+True Caption: Digitally subtracted angiogram demonstrates active extravasation of the superior rectal artery into the ileal-conduit (blue arrow)
+--------------------------------------------------
+Image 3
+Generated Caption: the image shows the presence of the proximal artery in the right atrium of the right atrium,
+True Caption: Digitally subtracted angiogram of the IMA demonstrated cessation of flow through the proximal superior rectal artery in the region of the intersection between the artery and ureter with retained perfusion of the rectosigmoid region and resolution of active extravasation
+--------------------------------------------------
+Image 4
+Generated Caption: the image shows the presence of the signal signal in the signal intensity of the signal intensity is measured in
+True Caption: Angle measurement of a Type 1 canal.
+--------------------------------------------------
+Image 5
+Generated Caption: ct scan showing the presence of the right hematoma in the right hematoma
+True Caption: Computed tomography on day 26Follow-up enhanced computed tomography on day 26 revealed no apparent progression of left iliopsoas hematoma, and no extravasation of contrast media was seen.
+--------------------------------------------------
+Image 6
+Generated Caption: ct scan showing the presence of the right hematoma in the right hematoma
+True Caption: Enhanced CT scan of the chest revealed an anterior mediastinal tumor (black arrow).
+--------------------------------------------------
+Image 7
+Generated Caption: postoperative ct scan showing the presence of the right hematoma and the right hematoma
+True Caption: Arrow shows ULP at the distal arch.
+--------------------------------------------------
+Image 8
+Generated Caption: the image shows the right coronal artery and the right coronal artery
+True Caption: Early sagittal T2-weighted MRI.
+--------------------------------------------------
+Image 9
+Generated Caption: preoperative ct scan showing the presence of the left liver and the right liver arrow
+True Caption: Late axial T2-weighted MRI.
+--------------------------------------------------

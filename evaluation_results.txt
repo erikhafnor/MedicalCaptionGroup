@@ -1,0 +1,8 @@
+
+📊 Evaluation Results:
+
+Average BERTScore (F1): 0.8383
+
+ROUGE-1 F1 Score: 0.1685
+ROUGE-2 F1 Score: 0.0465
+ROUGE-L F1 Score: 0.1516
