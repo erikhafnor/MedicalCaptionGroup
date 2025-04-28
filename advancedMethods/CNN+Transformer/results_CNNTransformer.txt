@@ -1,6 +1,0 @@
-BERTScore Precision: 0.9432
-BERTScore Recall: 0.9282
-BERTScore F1: 0.9355
-MedBERTScore Precision: 0.8713
-MedBERTScore Recall: 0.8234
-MedBERTScore F1: 0.8460
