@@ -43,9 +43,11 @@ The datasets used (ROCOv2) must be downloaded manually if not already available.
 
 ### 4. Running the Notebooks
 
-Each major part of the project has its own Jupyter Notebook:
+Each major part of the project has its own Python script or Jupyter Notebook:
 
-- `preprocessing.ipynb` → Data preparation and feature extraction
+- `preprocess_extract_features.py` → Data preparation and feature extraction
+- `sentenceEmbedRandomForest.py` → Baseline method with Sentence Embedding + K-Means clustering and RandomForest Classification with evaluations on dataset split test
+- `llavaMethod2.py` → Advanced method with Ollama LLaVa with evaluations on dataset split test
 - `blip_captioning.ipynb` → Fine-tuning and evaluating BLIP model
 - `cnn_transformer_captioning.ipynb` → CNN feature extraction + Transformer decoder captioning
 - `evaluation.ipynb` → Evaluation of results using BERTScore, MedBERTScore, ROUGE
@@ -66,7 +68,9 @@ We used:
 
 - **BERTScore**: General language caption quality
 - **MedBERTScore**: Specialized for medical domain
-- **ROUGE**: Text similarity and overlap
+- **BLEU**: Focus on Precision (n-gram overlap)
+- **ROUGE-1**: Recall (unigram overlap)
+- **BLEURT**: Semantic similarity
 
 Final scores are available in:
 
