@@ -11,9 +11,18 @@ from bert_score import score as bert_score
 from rouge_score import rouge_scorer
 from bleurt import score as bleurt_score
 import wandb
+import tensorflow as tf
+import torch
+
+# Set environment variables
+os.environ["CUDA_VISIBLE_DEVICES"] = "5"  # Use GPU 5
+os.environ["TOKENIZERS_PARALLELISM"] = "false"  # Suppress tokenizers parallelism warning
+
+# Set the device for PyTorch
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Initialize wandb
-wandb.init(project="llava-medical-image-evaluation", name="llava-relevance-evaluation")
+wandb.init(project="llava-medical-image-evaluation", name="ollama-llava-evaluation")
 
 # Preprocessing function for captions
 def preprocess_caption(caption):
@@ -22,11 +31,6 @@ def preprocess_caption(caption):
     caption = ' '.join('number' if word.isdigit() else word for word in caption.split())  # Replace numbers
     return caption
 
-# Function to compute image and caption similarity (placeholder for medical embedding model)
-def compute_image_caption_similarity(image_embedding, caption_embedding):
-    # Placeholder: Replace with actual embedding similarity calculation
-    return float((image_embedding @ caption_embedding.T) / (image_embedding.norm() * caption_embedding.norm()))
-
 # Function to process a single image and get the generated caption
 def process_image(image, llava_url, base64_image):
     payload = {
@@ -34,7 +38,7 @@ def process_image(image, llava_url, base64_image):
         "messages": [
             {
                 "role": "user",
-                "content": "describe the image as a doctor would in one short sentence which includes the imaging modality type and latin words for orientations and anatomical locations, X-ray, CT, MRI.",
+                "content": "Write a diagnostic report based on the medical image as a doctor would, using one or two concise sentences. Include the imaging modality type and Latin terms for orientations and anatomical locations. Use specific terms applicable to the image modality type (e.g. X-ray, CT, MRI, US).",
                 "images": [base64_image]
             }
         ],
@@ -69,13 +73,13 @@ dataset = load_dataset("eltorio/ROCOv2-radiology", split="test")  # Load only th
 LLAVA_URL = "https://ollama.ux.uis.no/api/chat"
 
 # Prepare BLEURT scorer
-bleurt_scorer = bleurt_score.BleurtScorer("bleurt-20")
+bleurt_scorer = bleurt_score.BleurtScorer("/home/ansatt/eriksh/bhome/DAT550/project/bleurt-20/BLEURT-20")
 
 # Prepare to store results
 results = []
 
 # Create a wandb.Table to log examples
-examples_table = wandb.Table(columns=["Image", "Reference Caption", "Generated Caption", "BLEU Score", "BERT-Score", "ROUGE-1", "BLEURT", "Image-Caption Similarity"])
+examples_table = wandb.Table(columns=["Image", "Reference Caption", "Generated Caption", "BLEU Score", "BERT-Score", "ROUGE-1", "BLEURT"])
 
 # Process each image in the test set
 print("Processing test set...")
@@ -106,20 +110,15 @@ for example in dataset:
         bleu_score = sentence_bleu(reference, candidate, smoothing_function=smoothing_function)
 
         # Calculate BERT-Score (Recall)
-        _, bert_recall, _ = bert_score([generated_caption], [caption], model_type="microsoft/deberta-xlarge-mnli", idf=True)
+        _, bert_recall, _ = bert_score([generated_caption], [caption], model_type="microsoft/deberta-base-mnli", idf=True, device="cuda")
 
-        # Calculate ROUGE-1 (F-measure)
+        # Calculate ROUGE-1
         rouge_scorer_instance = rouge_scorer.RougeScorer(["rouge1"], use_stemmer=True)
         rouge_scores = rouge_scorer_instance.score(caption, generated_caption)
         rouge_1_fmeasure = rouge_scores["rouge1"].fmeasure
 
         # Calculate BLEURT score
         bleurt_score_value = bleurt_scorer.score(references=[caption], candidates=[generated_caption])[0]
-
-        # Placeholder for Image-Caption Similarity (replace with actual embedding model)
-        image_embedding = ...  # Compute image embedding
-        caption_embedding = ...  # Compute caption embedding
-        image_caption_similarity = compute_image_caption_similarity(image_embedding, caption_embedding)
 
         # Log to wandb
         wandb.log({
@@ -130,8 +129,7 @@ for example in dataset:
             "bleu_score": bleu_score,
             "bert_score": bert_recall.mean().item(),
             "rouge_1": rouge_1_fmeasure,
-            "bleurt": bleurt_score_value,
-            "image_caption_similarity": image_caption_similarity
+            "bleurt": bleurt_score_value
         })
 
         # Add example to wandb.Table
@@ -142,8 +140,7 @@ for example in dataset:
             bleu_score,  # BLEU score
             bert_recall.mean().item(),  # BERT-Score
             rouge_1_fmeasure,  # ROUGE-1
-            bleurt_score_value,  # BLEURT
-            image_caption_similarity  # Image-Caption Similarity
+            bleurt_score_value  # BLEURT
         )
 
         # Append to results
@@ -155,8 +152,7 @@ for example in dataset:
             "bleu_score": bleu_score,
             "bert_score": bert_recall.mean().item(),
             "rouge_1": rouge_1_fmeasure,
-            "bleurt": bleurt_score_value,
-            "image_caption_similarity": image_caption_similarity
+            "bleurt": bleurt_score_value
         })
 
 # Log the examples table to wandb
