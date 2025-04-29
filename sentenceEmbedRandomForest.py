@@ -1,3 +1,6 @@
+# ACKNOWLEDGMENT
+# Chat Generative Pre-trained Transformer 4o (OpenAI) was used for writing assistance by providing feedback on language and text structure, which was subsequently revised by critical appraisal from the author.
+
 import numpy as np
 import json
 import torch
