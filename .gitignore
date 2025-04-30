@@ -25,3 +25,6 @@ blip-finetuned/
 wandb/
 features.npy
 
+# CLIP model weights + intermediate model
+clip-finetuned*/
+roco_updated_cuis/
