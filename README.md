@@ -48,6 +48,7 @@ Each major part of the project has its own Python script or Jupyter Notebook:
 - `preprocess_extract_features.py` → Data preparation and feature extraction
 - `sentenceEmbedRandomForest.py` → Baseline method with Sentence Embedding + K-Means clustering and RandomForest Classification with evaluations on dataset split test
 - `llavaMethod2.py` → Advanced method with Ollama LLaVa with evaluations on dataset split test
+- `reportGeneration.ipynb` → Get statistics from evaluations on dataset split test for baseline method and LLaVa method
 - `blip_captioning.ipynb` → Fine-tuning and evaluating BLIP model
 - `cnn_transformer_captioning.ipynb` → CNN feature extraction + Transformer decoder captioning
 - `evaluation.ipynb` → Evaluation of results using BERTScore, MedBERTScore, ROUGE
